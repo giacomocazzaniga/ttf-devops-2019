@@ -5,8 +5,8 @@ import { TtfRgb ,TtfHex } from "../../../commons/src/model/Color";
 class HttpController {
     constructor(server: Express) {
         server.get('/', (req, res) => {
-            if(req.query.color?.toString() != undefined) {
-                const color = JSON.parse(req.query.color?.toString()) as TtfRgb;
+            if(req.query != undefined) {
+                const color = JSON.parse(JSON.stringify(req.query)) as TtfRgb;
                 const convertedColor: TtfHex = convert(color);
                 res.send(convertedColor);
             } else {
