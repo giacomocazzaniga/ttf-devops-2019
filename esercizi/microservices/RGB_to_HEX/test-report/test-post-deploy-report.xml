@@ -1,0 +1,6 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="test suite description" tests="1" errors="0" failures="0" skipped="0" timestamp="2021-03-23T16:10:09" time="0.027">
+    <testcase classname="test suite description" name="test case description" time="0.003">
+    </testcase>
+  </testsuite>
+</testsuites>
