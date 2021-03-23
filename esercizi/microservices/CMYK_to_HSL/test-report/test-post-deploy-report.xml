@@ -1,0 +1,8 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="test suite description" tests="1" errors="0" failures="0" skipped="0" timestamp="2021-03-23T18:41:46" time="0.037">
+    <testcase classname="test suite description" name="test case description" time="0.023">
+      <system-out><![CDATA[{ hue: 240, saturation: 53, lightness: 85 }
+]]></system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
