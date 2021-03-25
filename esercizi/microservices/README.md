@@ -1,5 +1,29 @@
 # Tech Talent Factory - DevOps Class 2020
 
+## Numero di microservizi
+Abbiamo deciso di eseguire l'esercizio con 4 microservizi:
+  - Conversione RGB --> HEX
+  - Conversione HEX --> CMYK
+  - Conversione CMYK --> HSL
+  - Conversione HSL --> RGB
+ 
+ Queste conversioni sono collegate in modo da creare un ciclo per eseguire la trasformazione da un qualunque spazio colore a un qualunque altro.
+ 
+ ## Come utilizzare i microservizi
+ Per utilizzarli singolarmente bisogna entrare nella cartella del microservizio e lanciare i comandi:
+    docker image build -t <nome immagine> .
+    docker container run -p <porta host>:<porta locale> <nome immagine>
+ Poi bisogna aprire il browser alle pagine: 
+  - vagrantbox.local:<porta host>/RGB_to_HEX?red=0&green=0&blue=0
+  - vagrantbox.local:<porta host>/HEX_to_CMYK?color="000000"
+  - vagrantbox.local:<porta host>/CMYK_to_HSL?cyan=0&magenta=0&yellow=0&black=0
+  - vagrantbox.local:<porta host>/HSL_to_RGB?hue=0&saturation=0&lightness=0
+ 
+ Per utilizzarli tramite compose il comando da eseguire è:
+  docker-compose -f docker-file.yml up -d
+ Per utilizzare i servizi i link da utilizzare sono quelli indicati sopra dove <porta host> = 3000 
+ 
+ 
 ## Visione del Prodotto
 Creare un convertitore di spazio colore tra i seguenti formati: HEX, RGB, HSL e CMYK. Il prodotto deve poter convertire
 un colore fornito in uno qualsiasi dei formati gestiti a uno degli altri. Questo prodotto sarà raggiungibile tramite
