@@ -20,6 +20,26 @@ services:
       - "traefik.http.services.rgb_to_hex.loadbalancer.server.port=3000"
       - "traefik.http.routers.rgb_to_hex.middlewares=rgb_to_hex-strip"
 
+  hex_to_cmyk:
+    build: HEX_to_CMYK
+    restart: on-failure
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hex_to_cmyk.rule=Host(`vagrantbox.local`) && PathPrefix(`/HEX_to_CMYK/`)"
+      - "traefik.http.middlewares.hex_to_cmyk-strip.stripprefix.prefixes=/HEX_to_CMYK"
+      - "traefik.http.services.hex_to_cmyk.loadbalancer.server.port=3000"
+      - "traefik.http.routers.hex_to_cmyk.middlewares=hex_to_cmyk-strip"
+
+  hsl_to_rgb:
+    build: HSL_to_RGB
+    restart: on-failure
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hsl_to_rgb.rule=Host(`vagrantbox.local`) && PathPrefix(`/HSL_to_RGB/`)"
+      - "traefik.http.middlewares.hsl_to_rgb-strip.stripprefix.prefixes=/HSL_to_RGB"
+      - "traefik.http.services.hsl_to_rgb.loadbalancer.server.port=3000"
+      - "traefik.http.routers.hsl_to_rgb.middlewares=hex_to_cmyk-strip"
+
 #  <microservice-example-name>:
 #    build: <microservice-example-name>
 #    restart: "no"
