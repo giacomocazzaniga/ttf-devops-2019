@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { TtfRgb } from "../../../commons/src/model/Color";
+import { TtfHex } from "../../../commons/src/model/Color";
 import { convert } from './Service';
 
 
@@ -8,8 +8,8 @@ chai.config.includeStack = true;
 
 describe('test suite description', () => {
         it(`test case description`, () => {
-            const rgbColor: TtfRgb = {red:0,green:0,blue:255};
-            const expectedResult = convert(rgbColor).hex;
-            expectedResult.should.equal("0000FF");
+            const hexColor: TtfHex = {hex:"0000FF"};
+            const expectedResult = convert(hexColor);
+            expectedResult.should.equal({cyan:100,magenta:100,yellow:0,black:0});
         });
 });
