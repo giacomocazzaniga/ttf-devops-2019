@@ -3,7 +3,6 @@ import chaiHttp from 'chai-http';
 import * as config from '../../server-config.json'
 
 chai.config.includeStack = true;
-const should = chai.should();
 chai.use(chaiHttp);
 
 // describe('REST API test suite description', () => {
