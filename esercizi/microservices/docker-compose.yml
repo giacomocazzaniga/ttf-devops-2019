@@ -1,0 +1,31 @@
+version: '3'
+services:
+  reverse-proxy:
+    image: traefik
+    command: --api.insecure=true --providers.docker --providers.docker.exposedByDefault=false
+    restart: "no"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  rgb_to_hex:
+    build: RGB_to_HEX
+    restart: on-failure
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rgb_to_hex.rule=Host(`vagrantbox.local`) && PathPrefix(`/RGB_to_HEX/`)"
+      - "traefik.http.middlewares.rgb_to_hex-strip.stripprefix.prefixes=/RGB_to_HEX"
+      - "traefik.http.services.rgb_to_hex.loadbalancer.server.port=3000"
+      - "traefik.http.routers.rgb_to_hex.middlewares=rgb_to_hex-strip"
+
+#  <microservice-example-name>:
+#    build: <microservice-example-name>
+#    restart: "no"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.<microservice-example-name>.rule=PathPrefix(`/<microservice-example-name>`)"
+#      - "traefik.http.routers.<microservice-example-name>.middlewares=<microservice-example-name>-stripprefix"
+#      - "traefik.http.services.<microservice-example-name>.loadbalancer.server.port=3000"
+#      - "traefik.http.middlewares.<microservice-example-name>-stripprefix.stripprefix.prefixes=/<microservice-example-name>"
